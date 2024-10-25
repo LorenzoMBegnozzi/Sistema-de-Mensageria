@@ -1,0 +1,39 @@
+Conceitos Básicos de Mensageria
+Filas:
+São como linhas de espera para mensagens. Quando uma mensagem chega, ela entra na fila e fica lá até ser processada por alguém (um consumidor). Normalmente, a primeira mensagem a entrar é a primeira a sair (FIFO - First In, First Out).
+
+Produtores:
+Produtores são quem enviam as mensagens para as filas. Eles são responsáveis por gerar tarefas ou eventos que precisam ser feitos em algum momento.
+
+Consumidores:
+Consumidores são quem pegam as mensagens das filas e fazem o que precisa ser feito com elas. Eles ficam escutando a fila, esperando novas mensagens para processar.
+
+Tópicos:
+Em vez de filas, sistemas que usam tópicos trabalham com um esquema de publicação e assinatura (pub/sub). Várias aplicações podem "assinar" um tópico e receber todas as mensagens publicadas nele.
+
+Partições:
+Partições são usadas para dividir um tópico em partes menores, permitindo que várias mensagens sejam processadas ao mesmo tempo. Em sistemas como o Kafka, isso ajuda a distribuir a carga de trabalho.
+Diferenças e Casos de Uso de RabbitMQ, BullMQ e Kafka
+
+===================================================================================================================================================================================
+
+RabbitMQ:
+O que é: Um sistema de fila de mensagens bem conhecido e fácil de usar. Suporta vários protocolos e funciona bem para comunicação entre serviços.
+Quando usar: Para gerenciar tarefas simples em segundo plano, comunicação entre microsserviços, ou roteamento de mensagens.
+Vantagens: Fácil de configurar, suporta vários padrões de comunicação (como filas e pub/sub), e é confiável.
+
+BullMQ:
+O que é: Uma biblioteca baseada em Redis que ajuda a gerenciar filas de tarefas no Node.js. Boa para processar tarefas repetitivas ou agendadas.
+Quando usar: Para tarefas como enviar e-mails, notificações, ou limpeza de dados que precisam ser feitas de tempos em tempos.
+Vantagens: Simples de usar em projetos Node.js e fácil de integrar com Redis, que é rápido e leve.
+
+Kafka:
+O que é: Uma plataforma de streaming que funciona como um sistema de mensagens e um log distribuído. Usa tópicos e partições para escalar bem.
+Quando usar: Quando você precisa processar grandes volumes de dados em tempo real, como em pipelines de dados e análise de eventos.
+
+Vantagens: Suporta grandes volumes de dados, é escalável e ótimo para processamento em tempo real.
+
+Resumindo, mensageria é uma forma de diferentes partes de um sistema se comunicarem de forma assíncrona, sem precisar esperar uma pela outra. Dependendo do que você precisa, pode escolher entre:
+RabbitMQ: fácil de usar para microsserviços.
+BullMQ: Ideal para tarefas repetitivas em Node.js.
+Kafka: para grandes volumes de dados e eventos em tempo real.
