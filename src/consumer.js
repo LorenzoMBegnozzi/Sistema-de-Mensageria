@@ -1,19 +1,23 @@
 const amqp = require('amqplib');
 
-async function receiveMessage() {
-    const connection = await amqp.connect('amqp://localhost');
-    const channel = await connection.createChannel();
-    const queue = 'task_queue';
+async function consumeQueue() {
+    try {
+        const connection = await amqp.connect('amqp://localhost');
+        const channel = await connection.createChannel();
+        const queue = 'tasks';
 
-    await channel.assertQueue(queue, { durable: true });
-    console.log(`Waiting for messages in ${queue}. To exit press CTRL+C`);
+        await channel.assertQueue(queue, { durable: true });
+        console.log('[*] Waiting for messages in %s. To exit press CTRL+C', queue);
 
-    channel.consume(queue, (msg) => {
-        if (msg !== null) {
-            console.log(`Received: ${msg.content.toString()}`);
-            channel.ack(msg);
-        }
-    });
+        channel.consume(queue, (msg) => {
+            if (msg !== null) {
+                console.log(`[x] Received ${msg.content.toString()}`);
+                channel.ack(msg);
+            }
+        });
+    } catch (error) {
+        console.error('Error in consumer:', error);
+    }
 }
 
-receiveMessage().catch(console.error);
+consumeQueue();

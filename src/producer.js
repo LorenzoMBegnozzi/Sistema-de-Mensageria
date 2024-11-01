@@ -1,19 +1,21 @@
 const amqp = require('amqplib');
 
-async function sendMessage(message) {
-    const connection = await amqp.connect('amqp://localhost');
-    const channel = await connection.createChannel();
-    const queue = 'task_queue';
+async function sendToQueue(message) {
+    try {
+        const connection = await amqp.connect('amqp://localhost');
+        const channel = await connection.createChannel();
+        const queue = 'tasks';
 
-    await channel.assertQueue(queue, { durable: true });
-    channel.sendToQueue(queue, Buffer.from(message));
+        await channel.assertQueue(queue, { durable: true });
+        channel.sendToQueue(queue, Buffer.from(message));
 
-    console.log(`Sent: ${message}`);
-    setTimeout(() => {
-        connection.close();
-        process.exit(0);
-    }, 500);
+        console.log(`[x] Sent '${message}'`);
+        setTimeout(() => {
+            connection.close();
+        }, 500);
+    } catch (error) {
+        console.error('Error in producer:', error);
+    }
 }
 
-const message = process.argv.slice(2).join(' ') || 'Hello RabbitMQ!';
-sendMessage(message).catch(console.error);
+module.exports = { sendToQueue };

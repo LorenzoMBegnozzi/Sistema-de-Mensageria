@@ -1,5 +1,16 @@
 {
   "dependencies": {
-    "amqplib": "^0.10.4"
-  }
+    "amqplib": "^0.10.4",
+    "express": "^4.21.1"
+  },
+  "name": "mensageria",
+  "version": "1.0.0",
+  "description": "> # Exercício: Implementação Básica de Sistema de Mensageria\r > ## Objetivo\r > Compreender os conceitos de **mensageria** e suas técnicas, aplicando-os na construção de uma aplicação básica utilizando uma das seguintes tecnologias: **RabbitMQ**, **BullMQ** ou **Kafka**.\r > \r > ## Descrição\r > A mensageria é uma técnica fundamental em arquiteturas de software modernas, permitindo a comunicação assíncrona entre diferentes partes de um sistema. Neste exercício, você irá explorar os conceitos de mensageria e implementar um sistema simples que utiliza filas de mensagens para processar tarefas de forma eficiente.\r > \r > ## Requisitos\r > 1. **Estudo Prévio**:\r >    \r >    * Compreender os conceitos básicos de mensageria: filas, produtores, consumidores, tópicos, partições, etc.\r >    * Conhecer as diferenças e casos de uso de **RabbitMQ**, **BullMQ** e **Kafka**.\r >    * Lembre-se de fazer um resumo desses conceitos em um arquivo txt junto de sua atividade\r > 2. **Implementação**:\r >    \r >    * Escolher uma das tecnologias de mensageria mencionadas (**RabbitMQ**, **BullMQ** ou **Kafka**).\r >    * Desenvolver uma aplicação que consiste em:\r >      \r >      * **Produtor**: Envia mensagens/tarefas para uma fila.\r >      * **Consumidor**: Recebe e processa as mensagens/tarefas da fila.\r > 3. **Tecnologias Sugeridas**:\r >    \r >    * Linguagem de programação: **JavaScript/TypeScript**, **Python**, **Java** ou outra de sua preferência.\r >    * Ferramentas: Utilize Docker para facilitar a configuração do ambiente de mensageria, se necessário.\r > \r > ## Instruções\r > ### 1. Configuração do Ambiente\r > * **RabbitMQ**:\r >   \r >   * Utilize Docker para subir uma instância do RabbitMQ:\r >     ```shell\r >     docker run -d --hostname my-rabbit --name some-rabbit -p 5672:5672 -p 15672:15672 rabbitmq:3-management\r >     ```\r >   * Acesse o painel de controle em http://localhost:15672 (usuário padrão: `guest`, senha: `guest`).\r > * **BullMQ**:\r >   \r >   * **BullMQ** é baseado em Redis. Certifique-se de ter o Redis instalado ou utilize Docker:\r >     ```shell\r >     docker run -d -p 6379:6379 redis\r >     ```\r > * **Kafka**:\r >   \r >   * Utilize Docker para subir uma instância do Kafka:\r >     ```shell\r >     docker run -d --name zookeeper -p 2181:2181 zookeeper\r >     docker run -d --name kafka -p 9092:9092 --link zookeeper wurstmeister/kafka\r >     ```\r > \r > ### 2. Desenvolvimento da Aplicação\r > Escolha uma das tecnologias de mensageria e desenvolva os seguintes componentes:\r > \r > #### a. Produtor\r > * **Função**: Enviar mensagens/tarefas para a fila.\r > * **Exemplo de Tarefa**: Processamento de pedidos, envio de e-mails, geração de relatórios, etc.\r > \r > ### Nota de desafio\r > Se você está tendo um bom desenvolvimento na metéria é interessante que aplique os conceitos de mensageria em sua aplicação de Magic, pense em formas criativas de melhorar a usabilidade ou performance utilizando mensageria.\r > \r > Caso venha tendo mais dificuldade siga as instruções da atividade em um projeto novo do zero, é recomendado que faça um projeto em js/ts puro apenas com o express para ter um melhor entendimento da sua aplicação e de como a mensageria se aplica\r > \r > Responsa nessa mesma issue com o seu repositório com o projeto desta atividade",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
 }
